@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose'); //ODM (Object Document Mapper)
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var apiUsersRouter = require('./routes/api/users');
 var app = express();
 
 //Test the dev config file //remove for production
@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/users', apiUsersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
