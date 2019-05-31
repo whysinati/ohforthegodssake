@@ -1,27 +1,29 @@
 var express = require('express');
 var router = express.Router();
-//var Users = require('../../models/users');
+var Users = require('../../models/users');
 
 router.get('/', function(req, res, next) {
-  res.json({success: true}); // test the users api connection
-  // Users.find({},function(err, users){
-  //   if(err){
-  //    return res.json({'success':false, 'error': err});
-  //  }
-  //   return res.json({'success':true, 'users': users});
-  // });
+  //res.json({success: true}); // test the users api connection
+  //test via cli> curl -H "Content-Type: application/json" -X GET http://localhost:3000/api/users/
+  Users.find({},function(err, users){
+    if(err){
+     return res.json({'success':false, 'error': err});
+   }
+    return res.json({'success':true, 'users': users});
+  });
 });
 
-// router.get('/:userId', function(req,res){
+router.get('/:userId', function(req,res){
 
-//   var userId = req.params.userId;
-//    Users.findOne({'_id':userId}, function(err, user){
-//      if(err){
-//       return res.json({'success':false, 'error': err});
-//     }
-//      return res.json({'success':true, 'user': user});
-//    });
-//  });
+  var userId = req.params.userId;
+  //test via cli> curl -H "Content-Type: application/json" -X GET http://localhost:3000/api/users/5a763b67a5d70c115d81536a
+   Users.findOne({'_id':userId}, function(err, user){
+     if(err){
+      return res.json({'success':false, 'error': err});
+    }
+     return res.json({'success':true, 'user': user});
+   });
+ });
 
 //  router.post('/', function(req, res) {
 //   Users.create(new Users({

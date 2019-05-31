@@ -45,6 +45,6 @@ app.use(function(err, req, res, next) {
 
 //Test the dev config file
 //remove for production
-console.log(config); //cli npm start reveals JSON mongodb connection
+//console.log(config); //cli npm start reveals JSON mongodb connection
 
 module.exports = app;
