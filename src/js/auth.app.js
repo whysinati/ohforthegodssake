@@ -111,11 +111,23 @@ var authApp = (function() {
 
     return {
         load: function(){
-            //loginForm();
+            //loginForm(); //test login form submission
             //postRequest('loginForm', '/api/auth/login');
-            registrationForm();
-            postRequest('registrationForm', '/api/auth/register');
-            validate.registrationForm();
+            //registrationForm(); //test registration form submission
+            //postRequest('registrationForm', '/api/auth/register');
+            //validate.registrationForm();
+            switch(window.location.hash){
+                case '#register':
+                  registrationForm();
+                  postRequest('registrationForm', '/api/auth/register');
+                  validate.registrationForm();
+                  break;
+          
+                default:
+                  loginForm();
+                  postRequest('loginForm', '/api/auth/login');
+                  break;
+            }
         }
     }
 
@@ -149,3 +161,7 @@ var validate = (function() {
 })();
 
 authApp.load();
+
+window.addEventListener("hashchange", function(){
+    authApp.load();
+  });
