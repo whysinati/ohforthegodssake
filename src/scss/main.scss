@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -41,15 +41,15 @@ body::after {
     background-size: cover; /* Resize the background image to cover the entire container
    } */
 
-div {
+/*div {
     height: 500px;
     display: block;
     position: relative;
-  }
+  }*/
   
 div::after {
     content: "";
-    background: url(../images/GramDaBoss.JPG);
+    background: url(../../images/GramDaBossSm.JPG);
     background-attachment: fixed; /*scroll*/
     opacity: 0.4;
     top: 0;
