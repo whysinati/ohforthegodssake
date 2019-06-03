@@ -20,7 +20,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark
         li.nav-item
           a.nav-link(href='/')
             | Home
-        if showLogin
+        if !showLogin
           li.nav-item
             a.nav-link(href='/articles') Articles
           li.nav-item
