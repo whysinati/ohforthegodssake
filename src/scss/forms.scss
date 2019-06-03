@@ -1,0 +1,22 @@
+.login-form {
+    width: 100%;
+    max-width: 360px;
+    margin: 2rem auto 0;
+}
+  
+#formMsg {
+    display: none;
+}
+// change button color from bootstrap blues to greens
+body .btn-primary {
+    background-color: #7bc143;
+    border-color: #7bc143;
+    color: #FFF; }
+body .btn-primary:hover, body .btn-primary:focus {
+    border-color: #6fb03a;
+    background-color: #6fb03a;
+    color: #FFF; }
+body .btn-primary:active, body .btn-primary:visited, body .btn-primary:active:focus, body .btn-primary:active:hover {
+    border-color: #639d34;
+    background-color: #639d34;
+    color: #FFF; }
