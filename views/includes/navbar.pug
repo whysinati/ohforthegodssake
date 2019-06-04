@@ -16,34 +16,18 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.ml-auto
-        li.nav-item.active
-          a.nav-link(href='/')
-            | Home 
-            span.sr-only (current)
-          if !showLogin
-            li.nav-item
-              a.nav-link(href='/auth#register') Register
-            li.nav-item
-              a.nav-link(href='/auth#login') Login
-          else
-            li.nav-item
-              a.nav-link(href='/auth/logout') Logout
-
-        //li.nav-item
+        li.nav-item
           a.nav-link(href='/')
             | Home
-        //if !showLogin
-        //- if !session.passport //.user
-        //-   li.nav-item
-        //-     a.nav-link(href='/articles') Articles
-        //-   li.nav-item
-        //-     a.nav-link(href='/auth#register') Register
-        //-   li.nav-item
-        //-     a.nav-link(href='/auth#login') Login
-        //- else
-        //-   li.nav-item
-        //-     a.nav-link(href='/users/app') Users
-        //-   li.nav-item
-        //-     a.nav-link(href='/articles/app') Article Admin
-        //-   li.nav-item
-        //-     a.nav-link(href='/auth/logout') Logout
+        li.nav-item
+          a.nav-link(href='/posts') Posts
+        if showLogin
+          li.nav-item
+            a.nav-link(href='/auth#register') Register
+          li.nav-item
+            a.nav-link(href='/auth#login') Login
+        else
+          li.nav-item
+            a.nav-link(href='/posts/app') Post Admin
+          li.nav-item
+            a.nav-link(href='/auth/logout') Logout

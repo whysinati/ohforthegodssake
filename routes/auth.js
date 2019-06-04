@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/auth');
-  //res.redirect('/'); //this will go back to home, based on current settings
+  //res.redirect('/auth');  //this will redirect to login
+  res.redirect('/'); //this will go back to home, based on current settings
 });
 module.exports = router;

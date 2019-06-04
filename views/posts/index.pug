@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+
+  h1= title
+  hr
+  for post in posts
+
+    div.post
+      //- a(href='posts/' +   post.slug) //from initial setup - use this?
+      a(href='posts/view/' +   post.slug)
+        h2= post.title
+        div!= post.description
+

@@ -14,8 +14,10 @@ var Users = require('./models/users');
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
+var postsRouter = require('./routes/posts');
 var apiUsersRouter = require('./routes/api/users');
 var apiAuthRouter = require('./routes/api/auth');
+var apiPostsRouter = require('./routes/api/posts');
 var app = express();
 
 //Test the dev config file //remove for production
@@ -68,6 +70,13 @@ passport.deserializeUser(function(user, done){
 
 app.use(function(req,res,next){
   res.locals.session = req.session;
+  //these six lines are from 1903
+  res.locals.showLogin = true;
+  if(req.session.passport){
+    if(req.session.passport.user){
+      res.locals.showLogin = false;
+    }
+  }
   next();
 });
 
@@ -81,7 +90,8 @@ app.use(function(req,res,next){
   //exact matches.
   var whitelist = [
     '/',
-    '/auth'
+    '/auth',
+    '/posts'
   ];
 
   //req.url holds the current URL
@@ -120,9 +130,11 @@ app.use(function(req,res,next){
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/users', usersRouter); //remove this feature?
+app.use('/users/', usersRouter); //remove this feature?
+app.use('/posts/', postsRouter);
 app.use('/api/users', apiUsersRouter);
 app.use('/api/auth', apiAuthRouter);
+app.use('/api/posts', apiPostsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

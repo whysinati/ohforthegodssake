@@ -13,9 +13,8 @@ gulp.task('default', ['watch']);
 //Compile all JS tasks
 gulp.task('build-js', [
   'build-main-js',
-  'build-auth-js'//,
-  //'build-users-js',
-  //'build-articles-js'
+  'build-auth-js',
+  'build-posts-js'
 ]);
 
 //Compile all CSS tasks
@@ -37,27 +36,27 @@ gulp.task('build-main-css', function(){
 
 gulp.task('build-main-js', function() {
 
-  var authApp = gulp.src([
+  var mainApp = gulp.src([
     'src/js/main.js',
   ])
   .pipe(concat('main.min.js'))
   .pipe(uglify())
   .pipe(gulp.dest('public/dist/js'));
 
-  return merge(authApp);
+  return merge(mainApp);
 });
 
-// gulp.task('build-users-js', function() {
+gulp.task('build-posts-js', function() {
 
-//   var userApp = gulp.src([
-//     'src/js/users.app.js',
-//   ])
-//   .pipe(concat('users.app.min.js'))
-//   .pipe(uglify())
-//   .pipe(gulp.dest('public/dist/js'));
+  var postApp = gulp.src([
+    'src/js/posts.app.js',
+  ])
+  .pipe(concat('posts.app.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest('public/dist/js'));
 
-//   return merge(userApp);
-// });
+  return merge(postApp);
+});
 
 gulp.task('build-auth-js', function() {
 
@@ -70,18 +69,6 @@ gulp.task('build-auth-js', function() {
 
   return merge(authApp);
 });
-
-// gulp.task('build-articles-js', function() {
-
-//   var articleApp = gulp.src([
-//     'src/js/articles.app.js',
-//   ])
-//   .pipe(concat('articles.app.min.js'))
-//   .pipe(uglify())
-//   .pipe(gulp.dest('public/dist/js'));
-
-//   return merge(articleApp);
-// });
 
 //Recompile SCSS/JS on save
 gulp.task('watch', function(){

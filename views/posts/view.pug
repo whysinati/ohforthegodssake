@@ -1,0 +1,11 @@
+extends ../layout
+block content
+  post
+    h1= post.title
+    hr
+    div
+      - var date = new Date(post.timeframe).toISOString().slice(0, 19).replace('T', ' ');
+      small Posted: #{date}
+    div!= post.body
+
+  script(src='dist/js/posts.app.min.js')
