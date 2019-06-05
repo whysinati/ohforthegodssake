@@ -134,6 +134,41 @@ var postsApp = (function() {
 
     app.innerHTML = form;
   }
+  function postRequest(formId, url){
+  //function processRequest(formId, url, method) {
+    let form = document.getElementById(formId);
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let formData = new FormData(form);
+      let uri = `${window.location.origin}${url}`;
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', uri);
+      //xhr.open(method, uri);
+
+      xhr.setRequestHeader(
+        'Content-Type',
+        'application/json; charset=UTF-8'
+      );
+
+      let object = {};
+      formData.forEach(function (value, key) {
+        object[key] = value;
+      });
+
+      xhr.send(JSON.stringify(object));
+      xhr.onload = function () {
+        let data = JSON.parse(xhr.response);
+        if (data.success === true) {
+          window.location.hash = `#view-${data.slug}`
+          //window.location.href = '/articles/app';
+        } else {
+          document.getElementById('formMsg').style.display = 'block';
+        }
+      }
+    });
+  }
+
 
   return {
     load: function() {
@@ -146,6 +181,7 @@ var postsApp = (function() {
         case '#create':
           //console.log('CREATE'); //check at http://localhost:3001/posts/app#create
           createPost();
+          postRequest('createPost', '/api/posts');
           //processRequest('createPost', '/api/posts', 'POST');
           break;
 
