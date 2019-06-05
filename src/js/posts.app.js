@@ -134,7 +134,7 @@ var postsApp = (function() {
 
     app.innerHTML = form;
   }
-  function postRequest(formId, url){
+  function postRequest(formId, url){ //look in http://localhost:3001/api/posts to see if new posts are made
   //function processRequest(formId, url, method) {
     let form = document.getElementById(formId);
     form.addEventListener('submit', function (e) {

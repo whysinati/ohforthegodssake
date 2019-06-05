@@ -48,7 +48,7 @@ Posts.pre('validate', function(next){
     this.timeframe = new Date().toISOString();
   }
 
-  this.timeframe = new Date().toISOString();
+  //this.timeframe = new Date().toISOString();
 
   next();
 });
