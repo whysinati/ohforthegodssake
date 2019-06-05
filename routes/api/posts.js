@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 //router.get('/:articleId', function(req,res){});
 
 router.get('/:slug', function(req,res){
-  var id = req.params.slug;
+  //var id = req.params.slug;
   Posts.findOne({slug:req.params.slug}, function(err, post){
 // router.get('/:id', function(req,res){
 
@@ -44,6 +44,7 @@ router.post('/', function(req, res) {
     caption: req.body.caption,
     quote: req.body.quote,
     body: req.body.body,
+    image: req.body.image,
     description: req.body.description,
     keywords: req.body.keywords,
     timeframe: req.body.timeframe
@@ -60,7 +61,7 @@ router.post('/', function(req, res) {
 
 router.put('/', function(req, res){
 
-  Posts.findOne({'_id': req.body._id}, function(err, post){
+  Posts.findOne({'slug': req.body.slug}, function(err, post){
 
    if(err) {
      return res.json({success: false, error: err});
@@ -78,24 +79,28 @@ router.put('/', function(req, res){
 
       if(data.quote){
         post.quote = data.quote;
-        }
+      }
 
       if(data.body){
-      post.body = data.body;
+        post.body = data.body;
       }
 
       if(data.description){
-      post.description = data.description;
+        post.description = data.description;
       }
 
       if(data.keywords){
         post.keywords = data.keywords;
-        }
+      }
+
+      if(data.image){
+        post.image = data.image;
+      }
     
       if(data.timeframe){
         post.timeframe = data.timeframe;
         post.offset = new Date(data.timeframe).getTimezoneOffset();
-        }
+      }
       
       post.save(function(err){
         if(err){
@@ -111,11 +116,11 @@ router.put('/', function(req, res){
   
 });
 
-router.delete('/:postId', function(req,res){
+router.delete('/:slug', function(req,res){
 
-  var postId = req.params.postId;
+  var slug = req.params.slug;
 
-  Posts.remove({'_id':postId}, function(err,removed){
+  Posts.remove({'slug':slug}, function(err,removed){
 
     if(err){
       return res.json({success: false, error: err});
