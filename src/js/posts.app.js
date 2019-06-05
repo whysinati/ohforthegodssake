@@ -91,7 +91,7 @@ var postsApp = (function() {
                 <input type="text" id="title" name="title" class="form-control" required>
               </div>
               <div class="form-group col-md-6">
-                <label for="published">Timeframe</label>
+                <label for="timeframe">Timeframe</label>
                 <input type="datetime-local" id="timeframe" name="timeframe" class="form-control" required>
               </div>
             </div>
@@ -134,6 +134,47 @@ var postsApp = (function() {
 
     app.innerHTML = form;
   }
+
+  function viewPost(id){
+
+    let uri = `${window.location.origin}/api/posts/${id}`;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', uri);
+
+    xhr.setRequestHeader(
+      'Content-Type',
+      'application/json; charset=UTF-8'
+    );
+
+    xhr.send();
+
+    xhr.onload = function(){
+
+      let app = document.getElementById('app');
+      let data = JSON.parse(xhr.response);
+      let card = '';
+
+      card = `<div class="card">
+        <div class="card-header clearfix">
+          <h2 class="h3 float-left">${data.post.title}</h2>
+          <div class="float-right">
+            <a href="#edit-${data.post._id}" class="btn btn-primary">Edit</a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="blockquote">${data.post.quote}</div>
+          <br>
+          <div>${data.post.caption}</div>
+          <div>${data.post.body}</div>
+          <div>Tagged: <em>${data.post.keywords}</em></div>
+        </div>
+      </div>
+      `;
+
+      app.innerHTML = card;
+    }
+  }
+
   function postRequest(formId, url){ //look in http://localhost:3001/api/posts to see if new posts are made
   //function processRequest(formId, url, method) {
     let form = document.getElementById(formId);
@@ -186,8 +227,8 @@ var postsApp = (function() {
           break;
 
         case '#view':
-          console.log('VIEW');
-          //viewPost(hashArray[1]);
+          //console.log('VIEW');
+          viewPost(hashArray[1]);
           break;
 
         case '#edit':

@@ -47,7 +47,7 @@ Posts.pre('validate', function(next){
   if(this.timeframe==undefined){
     this.timeframe = new Date().toISOString();
   }
-
+  //not sure how the line below appeared, but it isn't needed
   //this.timeframe = new Date().toISOString();
 
   next();
