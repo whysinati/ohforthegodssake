@@ -7,6 +7,11 @@
 #formMsg {
     display: none;
 }
+
+@media all and (max-width:480px) {
+    .btn-sm-block { width: 100%; display:block; }
+  }
+
 // change button color from bootstrap blues to greens
 body .btn-primary {
     background-color: #7bc143;
