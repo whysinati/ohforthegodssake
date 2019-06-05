@@ -12,18 +12,19 @@ router.get('/', function(req, res, next) {
 });
 
 //router.get('/:articleId', function(req,res){});
-// router.get('/:slug', function(req,res){
-//   var id = req.params.slug;
-//   Posts.findOne({slug:req.params.slug}, function(err, post){
-router.get('/:id', function(req,res){
 
-  var id = req.params.id;
-   Posts.findOne({'_id':id}, function(err, post){
-     if(err){
-      return res.json({'success':false, 'error': err});
-    }
-     return res.json({'success':true, 'post': post});
-   });
+router.get('/:slug', function(req,res){
+  var id = req.params.slug;
+  Posts.findOne({slug:req.params.slug}, function(err, post){
+// router.get('/:id', function(req,res){
+
+//   var id = req.params.id;
+//   Posts.findOne({'_id':id}, function(err, post){
+    if(err){
+    return res.json({'success':false, 'error': err});
+  }
+    return res.json({'success':true, 'post': post});
+  });
 });
 
 //does this show just the user's own posts?
