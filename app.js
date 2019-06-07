@@ -23,8 +23,12 @@ var apiAuthRouter = require('./routes/api/auth');
 var apiPostsRouter = require('./routes/api/posts');
 var app = express();
 
+if(process.env.NODE_ENV==='production'){
+  var config = require('../config.prod');
+}else{
 //Test the dev config file //remove for production
-var config = require('./config.dev');
+  var config = require('./config.dev');
+}
 //Connect to MongoDB
 mongoose.connect(config.mongodb, { useNewUrlParser: true });
 // view engine setup

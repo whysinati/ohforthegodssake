@@ -261,7 +261,7 @@ var postsApp = (function() {
 
       app.innerHTML = form;
       processRequest('editPost', '/api/posts', 'PUT');
-      console.log(data); //what will this show me?
+      //console.log(data); //what will this show me?
 
     }
   }
