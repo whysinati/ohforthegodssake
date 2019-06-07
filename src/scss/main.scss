@@ -7,7 +7,8 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: black;
+  // color: #00B7FF;
 }
 
 *{
@@ -58,4 +59,8 @@ div::after {
     right: 0;
     position: absolute;
     z-index: -1;   
+  }
+
+  div {
+    background-color: #FFFF00;
   }

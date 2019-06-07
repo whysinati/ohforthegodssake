@@ -3,14 +3,15 @@ var router = express.Router();
 var Posts = require('../models/posts');
 var today = new Date();
 
+// generates view intended to allow users to see and edit their posts 
 router.get('/app', function(req, res, next) {
-  res.render('posts/app', { title: 'Post Management' });
+  res.render('posts/app', { title: 'My Posts' });
 });
-
+// generates public listing of all posts (still need to create page view!!!)
 router.get('/', function(req, res, next) {
   //added timeframe sorting - does it work?
-  Posts.find({}, {sort: '-timeframe'}, function(err, posts){
-    console.log(posts);
+  Posts.find({}, function(err, posts){
+    //console.log(posts);
     if(err)
     {
       return handleError(err);

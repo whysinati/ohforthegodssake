@@ -33,11 +33,7 @@ var postsApp = (function() {
           <td>${posts[i]['body']}</td>
           <td>${posts[i]['quote']}</td>
           <td>${posts[i]['image']}</td>
-          <td>`
-            +
-            (posts[i]['timeframe'] ? `${posts[i]['timeframe'].slice(0, 19).replace('T', ' ')}` : `No Timeframe Date Set`)
-            +`
-          </td>
+          <td>${posts[i]['timeframe']}</td>
         </tr>`;
       }
 

@@ -14,16 +14,16 @@ router.get('/', function(req, res, next) {
 //router.get('/:articleId', function(req,res){});
 
 router.get('/:slug', function(req,res){
-  //var id = req.params.slug;
-  Posts.findOne({slug:req.params.slug}, function(err, post){
+  var slug= req.params.slug;
+  Posts.findOne({'slug':slug}, function(err, post){
 // router.get('/:id', function(req,res){
 
 //   var id = req.params.id;
 //   Posts.findOne({'_id':id}, function(err, post){
     if(err){
-    return res.json({'success':false, 'error': err});
-  }
-    return res.json({'success':true, 'post': post});
+      return res.json({'success':false, 'error': err});
+    }
+      return res.json({'success':true, 'post': post});
   });
 });
 
@@ -47,7 +47,8 @@ router.post('/', function(req, res) {
     image: req.body.image,
     description: req.body.description,
     keywords: req.body.keywords,
-    timeframe: req.body.timeframe
+    timeframe: req.body.timeframe,
+    user_id: req.params._id
   }), function(err, post){
     
     if(err){
@@ -63,19 +64,20 @@ router.put('/', function(req, res){
 
   Posts.findOne({'slug': req.body.slug}, function(err, post){
 
-   if(err) {
-     return res.json({success: false, error: err});
-   }else if(post) {
-
+    if(err) {
+      return res.json({success: false, error: err});
+    }
+   //}else if(post) {
+    if(post) {
       let data = req.body;
 
       if(data.title){
-      post.title = data.title;
+        post.title = data.title;
       }
 
       if(data.caption){
         post.caption = data.caption;
-        }
+      }
 
       if(data.quote){
         post.quote = data.quote;

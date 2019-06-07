@@ -19,7 +19,7 @@ var Posts = new Schema({
   body: String,
   caption: String,
   quote: String,
-  creator: String,
+  user_id: String,
   timeframe: {
     type: Date
   }
@@ -42,6 +42,10 @@ Posts.pre('validate', function(next){
       this.slug = slug(this.title).toLowerCase();
     }
   }
+
+  // if(this.user_id==undefined){
+  //   this.user_id = session.user._id;
+  // }
 
   //If no timeframe has been provided use the current date
   if(this.timeframe==undefined){

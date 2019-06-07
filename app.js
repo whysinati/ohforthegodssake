@@ -60,7 +60,8 @@ passport.serializeUser(function(user, done){
     username: user.username,
     email: user.email,
     first_name: user.first_name,
-    last_name: user.last_name
+    last_name: user.last_name,
+    admin: user.admin
   });
 });
 
@@ -106,7 +107,8 @@ app.use(function(req,res,next){
   //Allow access to dynamic end points
   var subs = [
     '/public/',
-    '/api/auth/'
+    '/api/auth/',
+    '/posts/'
   ];
 
   //The query string provides a partial URL match beginning
