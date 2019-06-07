@@ -191,7 +191,7 @@ var postsApp = (function() {
       //let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
       //var date = Date(data.post.timeframe);
-      console.log(data); //show the JSON of the selected post
+      //console.log(data); //show the JSON of the selected post
 
       var form = `
         <div class="card">

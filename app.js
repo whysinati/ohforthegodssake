@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var Recaptcha = require('express-recaptcha').RecaptchaV3;
+//import Recaptcha from 'express-recaptcha'
+var recaptcha = new Recaptcha('SITE_KEY', 'SECRET_KEY');
 
 var mongoose = require('mongoose'); //ODM (Object Document Mapper)
 var session = require('express-session');
@@ -30,7 +33,8 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true })); // for reCAPTCHA
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

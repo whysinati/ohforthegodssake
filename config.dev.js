@@ -14,5 +14,8 @@ config.session.secret = '7j&1tH!cr4F*1U';
 //Define the domain for which this cookie is to be set
 config.cookie.domain = 'localhost';
 
+//ReCAPTCHA
+
+
 config.mongodb = 'mongodb://localhost/gram-cms';
 module.exports = config;

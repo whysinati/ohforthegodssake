@@ -6,13 +6,19 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: black;
-  // color: #00B7FF;
+a h2 {
+  color: #260126;
+  //color: #00B7FF;
+}
+
+a h2 span {
+  background-color: #F2EEB3; //#bfaf80;
+  // box-shadow: #00B7FF, 2px;
 }
 
 *{
-  font-family: 'Ranga', cursive;
+  font-family: 'Satisfy', cursive;
+  // font-family: 'Ranga', cursive;
 }
 
 p {
@@ -52,6 +58,7 @@ div::after {
     content: "";
     background: url(../../images/GramDaBossSm.JPG);
     background-attachment: fixed; /*scroll*/
+    background-size: contain; //cover
     opacity: 0.4;
     top: 0;
     left: 0;
@@ -61,6 +68,8 @@ div::after {
     z-index: -1;   
   }
 
-  div {
-    background-color: #FFFF00;
-  }
+  //div {
+    // background-color: #FFFF00;
+  //  background-color: white;
+    //opacity:0.6;
+  //}

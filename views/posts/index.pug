@@ -8,8 +8,10 @@ block content
 
     div.post
       a(href='posts/view/' +   post.slug)
-        h2= post.title
-        div!= post.description
+        h2
+          span= post.title
+        h3= post.description
         h3= post.caption
         h3= post.quote
-
+    hr
+    hr
