@@ -28,7 +28,7 @@ router.get('/:slug', function(req,res){
 });
 
 //does this show just the user's own posts?
-router.get('/byUser/:userID', function(req,res){
+router.get('/byUser/:user_id', function(req,res){
   var userID = req.params.userID;
   Posts.find({'userID':userID}, null, {sort: '-timeframe'}, function(err, posts){
     if(err){
@@ -48,7 +48,7 @@ router.post('/', function(req, res) {
     description: req.body.description,
     keywords: req.body.keywords,
     timeframe: req.body.timeframe,
-    user_id: req.params._id
+    user_id: req.session.passport.user._id //'5cf177898a08f059cce02bf6'
   }), function(err, post){
     
     if(err){

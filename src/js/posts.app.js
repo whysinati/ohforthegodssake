@@ -151,7 +151,7 @@ var postsApp = (function() {
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
       let card = '';
-
+      // console.log(data);
       card = `<div class="card">
         <div class="card-header clearfix">
           <h2 class="h3 float-left">${data.post.title}</h2>
@@ -188,10 +188,11 @@ var postsApp = (function() {
     xhr.send();
 
     xhr.onload = function () {
-      //let app = document.getElementById('app');
+      let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
-      //var date = Date(data.post.timeframe);
-      //console.log(data); //show the JSON of the selected post
+      var date = Date(data.post.timeframe);
+      // console.log(date); 
+      console.log(data);//show the JSON of the selected post
 
       var form = `
         <div class="card">
@@ -292,7 +293,7 @@ var postsApp = (function() {
       xhr.onload = function () {
         let data = JSON.parse(xhr.response);
         if (data.success === true) {
-          window.location.hash = `#view-${data.slug}`
+          window.location.hash = `#view-${data.post.slug}`
           //window.location.href = '/posts/app';
         } else {
           document.getElementById('formMsg').style.display = 'block';

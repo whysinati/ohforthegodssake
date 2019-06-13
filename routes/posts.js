@@ -21,13 +21,14 @@ router.get('/', function(req, res, next) {
 });
 //router.get('/:slug', function(req, res, next) {
 router.get('/view/:slug', function(req, res, next) {
-  Posts.findOne({slug:req.params.slug},function(err, post){
+  Posts.findOne({slug:req.params.slug},function(err, posts){
     if(err)
     {
       return handleError(err);
     }
     else{
-      return res.render('posts/view', { title: 'My Selected Post' , post:post});
+      console.log(req.params.slug);
+      return res.render('posts/view', { title: 'My Selected Post' , post:posts});
     }
   });
 });
