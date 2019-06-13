@@ -71,7 +71,6 @@ var postsApp = (function() {
 
   function createPost() {
     var app = document.getElementById('app');
-
     var form = `
       <div class="card">
         <div class="card-header clearfix">
@@ -131,6 +130,7 @@ var postsApp = (function() {
 
 
     app.innerHTML = form;
+    //console.log("something");
   }
 
   function viewPost(slug){

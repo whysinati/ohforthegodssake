@@ -44,7 +44,7 @@ Posts.pre('validate', function(next){
   }
 
   // if(this.user_id==undefined){
-  //   this.user_id = session.user._id;
+  //   this.user_id = req.session.passport.user.id;
   // }
 
   //If no timeframe has been provided use the current date

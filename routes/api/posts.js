@@ -29,8 +29,8 @@ router.get('/:slug', function(req,res){
 
 //does this show just the user's own posts?
 router.get('/byUser/:user_id', function(req,res){
-  var userID = req.params.userID;
-  Posts.find({'userID':userID}, null, {sort: '-timeframe'}, function(err, posts){
+  var userID = req.params.user_id;
+  Posts.find({'user_id':userID}, null, {sort: '-timeframe'}, function(err, posts){
     if(err){
       return res.json({'success':false, 'error': err});
     }
@@ -48,7 +48,7 @@ router.post('/', function(req, res) {
     description: req.body.description,
     keywords: req.body.keywords,
     timeframe: req.body.timeframe,
-    user_id: req.session.passport.user._id //'5cf177898a08f059cce02bf6'
+    user_id: req.session.passport.user.id //'5cf177898a08f059cce02bf6'
   }), function(err, post){
     
     if(err){
