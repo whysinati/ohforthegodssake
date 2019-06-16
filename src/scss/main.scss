@@ -1,14 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Ranga');
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
 body {
   padding: 20px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Acme", Helvetica, Arial, sans-serif;
+  // font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a h2 {
   color: #260126;
   //color: #00B7FF;
+  font-family: 'Acme', sans-serif;
+}
+
+a h3 {
+  color: #260126;
+  //color: #00B7FF;
+  font-family: 'Acme', sans-serif;
 }
 
 a h2 span {
@@ -17,12 +26,14 @@ a h2 span {
 }
 
 *{
-  font-family: 'Satisfy', cursive;
+  // font-family: 'Satisfy', cursive;
   // font-family: 'Ranga', cursive;
+  font-family: 'Acme', sans-serif;
 }
 
 p {
-  font-family: 'Satisfy', cursive;
+  font-family: 'Acme', sans-serif;
+  // font-family: 'Satisfy', cursive;
   font-size: 1.3rem;
 }
 
@@ -30,6 +41,10 @@ main{
   width: 800px;
   max-width: 100%;
   margin: 0 auto;
+}
+
+.card{
+  background-color: transparentize($color: #ffffff, $amount: .2);
 }
 
 /* body {

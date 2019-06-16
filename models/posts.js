@@ -21,7 +21,8 @@ var Posts = new Schema({
   quote: String,
   user_id: String,
   timeframe: {
-    type: Date
+    type: Date,
+    default: Date.now
   }
 }, {timestamps: true
 //   created: {

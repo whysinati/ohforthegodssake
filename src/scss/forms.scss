@@ -14,13 +14,13 @@
 
 // change button color from bootstrap blues to greens
 body .btn-primary {
-    background-color: #7bc143;
-    border-color: #7bc143;
+    background-color:#260126; // #7bc143;
+    border-color: white;
     color: #FFF; }
 body .btn-primary:hover, body .btn-primary:focus {
-    border-color: #6fb03a;
-    background-color: #6fb03a;
-    color: #FFF; }
+    border-color:#260126;// #6fb03a;
+    background-color: white;
+    color:#59323C; }
 body .btn-primary:active, body .btn-primary:visited, body .btn-primary:active:focus, body .btn-primary:active:hover {
     border-color: #639d34;
     background-color: #639d34;

@@ -4,8 +4,8 @@ block content
     h1= post.title
     hr
     div
-      //- - var date = article.timeframe.toISOString().slice(0, 19).replace('T', ' ');
-      //- small When? #{date}
+      - var date = post.timeframe.toISOString().slice(0, 7);
+      small When? #{date}
     div!= post.body
     div!= post.timeframe
 

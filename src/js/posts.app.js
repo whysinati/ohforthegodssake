@@ -1,3 +1,5 @@
+
+
 var postsApp = (function() {
 
   function viewPosts() {
@@ -30,10 +32,9 @@ var postsApp = (function() {
           </td>
           <td>${posts[i]['description']}</td>
           <td>${posts[i]['caption']}</td>
-          <td>${posts[i]['body']}</td>
           <td>${posts[i]['quote']}</td>
           <td>${posts[i]['image']}</td>
-          <td>${posts[i]['timeframe']}</td>
+
         </tr>`;
       }
 
@@ -53,10 +54,9 @@ var postsApp = (function() {
                 <td>Title</td>
                 <td>Description</td>
                 <td>Caption</td>
-                <td>Body</td>
                 <td>Quote</td>
                 <td>Image</td>
-                <td>Timeframe</td>
+
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -88,8 +88,8 @@ var postsApp = (function() {
                 <input type="text" id="title" name="title" class="form-control" required>
               </div>
               <div class="form-group col-md-6">
-                <label for="timeframe">Timeframe</label>
-                <input type="datetime-local" id="timeframe" name="timeframe" class="form-control" required>
+                <label for="timeframe">Wild guess when this happened (otherwise, just pick at random)</label>
+                <input type="month" id="timeframe" name="timeframe" class="form-control" required>
               </div>
             </div>
             <div class="row">
@@ -150,6 +150,7 @@ var postsApp = (function() {
 
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
+      var date = data.post.timeframe.slice(0, 7);
       let card = '';
       // console.log(data);
       card = `<div class="card">
@@ -160,6 +161,7 @@ var postsApp = (function() {
           </div>
         </div>
         <div class="card-body">
+          <div>${date}</div>
           <div class="blockquote">${data.post.quote}</div>
           <br>
           <div>${data.post.caption}</div>
@@ -190,8 +192,9 @@ var postsApp = (function() {
     xhr.onload = function () {
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
-      var date = Date(data.post.timeframe);
-      // console.log(date); 
+      var date = data.post.timeframe.slice(0, 7);
+      
+      console.log(date); 
       console.log(data);//show the JSON of the selected post
 
       var form = `
@@ -211,8 +214,8 @@ var postsApp = (function() {
                   <input type="text" id="title" name="title" class="form-control" value="${data.post.title}" required>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="timeframe">Timeframe</label>
-                  <input type="datetime-local" id="timeframe" name="timeframe" class="form-control" value="${data.post.date}" required>
+                  <label for="timeframe">Wild guess when this happened (otherwise, just pick at random)</label>
+                  <input type="month" id="timeframe" name="timeframe" class="form-control" value="${date}" required>
                 </div>
               </div>
               <div class="row">

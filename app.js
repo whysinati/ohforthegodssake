@@ -6,7 +6,7 @@ var logger = require('morgan');
 var Recaptcha = require('express-recaptcha').RecaptchaV3;
 //import Recaptcha from 'express-recaptcha'
 var recaptcha = new Recaptcha('SITE_KEY', 'SECRET_KEY');
-
+var dateFormat = require('dateformat');
 var mongoose = require('mongoose'); //ODM (Object Document Mapper)
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -40,6 +40,7 @@ app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: true })); // for reCAPTCHA
 app.use(cookieParser());
+app.use(dateFormat);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('express-session')({
