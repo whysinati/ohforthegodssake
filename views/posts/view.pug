@@ -4,9 +4,20 @@ block content
     h1= post.title
     hr
     div
-      - var date = post.timeframe.toISOString().slice(0, 7);
-      small When? #{date}
-    div!= post.body
-    div!= post.timeframe
-
-  //- script(src='../../dist/js/posts.app.min.js')
+      - var date = post.timeframe.toISOString().slice(0, 4);
+      h1 When? #{date}
+    br
+    
+    div.w3-container
+      span 
+        div.w3-display-container
+          img.w3-right.w3(src='../../images/GramDaBossSm.JPG' style='max-width:480px' alt=post.caption)
+          div.w3-display-bottomright.w3-container
+            p= post.caption
+      div
+        h1= post.body
+      br
+      div
+        h1= 'Gram-ism: ' + '"' + post.quote + '"'
+    hr
+    
