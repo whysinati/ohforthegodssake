@@ -6,12 +6,17 @@ block content
   hr
   for post in posts
 
-    div.post
-      a(href='posts/view/' +   post.slug)
-        h2
-          span= post.title
-        h3= post.description
-        h3= post.caption
-        h3= post.quote
-    hr
-    hr
+    div.post.w3-card-4.w3-pale-blue
+      header.w3-container.w3-light-blue
+        a(href='posts/view/' +   post.slug)
+          h2
+            span= post.title
+      div.w3-container
+        span 
+          img.w3-right.w3(src='../../images/GramDaBossSm.JPG' style='max-width:200px' alt=post.caption) 
+        //p= post.caption
+        p= post.body
+        p
+          i= 'Gram-ism: ' + '"' + post.quote + '"'
+    br
+

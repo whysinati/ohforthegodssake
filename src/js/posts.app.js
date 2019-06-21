@@ -1,5 +1,3 @@
-
-
 var postsApp = (function() {
 
   function viewPosts() {
@@ -19,6 +17,7 @@ var postsApp = (function() {
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
       let posts = data.posts;
+      // console.log(posts);
       let table = '';
       let rows = '';
       //console.log(data); //this shows a success/array of the posts in the db
@@ -30,8 +29,7 @@ var postsApp = (function() {
           <td>
             <a href="#view-${posts[i]['slug']}">${posts[i]['title']}</a>
           </td>
-          <td>${posts[i]['description']}</td>
-          <td>${posts[i]['caption']}</td>
+          <td>${posts[i]['body']}</td>
           <td>${posts[i]['quote']}</td>
           <td>${posts[i]['image']}</td>
 
@@ -52,8 +50,7 @@ var postsApp = (function() {
             <thead>
               <tr>
                 <td>Title</td>
-                <td>Description</td>
-                <td>Caption</td>
+                <td>Story</td>
                 <td>Quote</td>
                 <td>Image</td>
 
@@ -88,7 +85,7 @@ var postsApp = (function() {
                 <input type="text" id="title" name="title" class="form-control" required>
               </div>
               <div class="form-group col-md-6">
-                <label for="timeframe">Wild guess when this happened (otherwise, just pick at random)</label>
+                <label for="timeframe">Wild guess when this happened (or pick at random)</label>
                 <input type="month" id="timeframe" name="timeframe" class="form-control" required>
               </div>
             </div>
@@ -133,9 +130,13 @@ var postsApp = (function() {
     //console.log("something");
   }
 
-  function viewPost(slug){
-
-    let uri = `${window.location.origin}/api/posts/${slug}`;
+  function viewPost(id){
+    // console.log(slug); //what is the slug being passed?
+    // console.log(data.post); //this is unknown
+    // console.log('viewPost');
+    // console.log(id);
+    let uri = `${window.location.origin}/api/posts/${id}`;
+    // console.log(uri);
     let xhr = new XMLHttpRequest();
     xhr.open('GET', uri);
 
@@ -176,9 +177,9 @@ var postsApp = (function() {
     }
   }
 
-  function editPost(slug) {
+  function editPost(id) {
 
-    let uri = `${window.location.origin}/api/posts/${slug}`;
+    let uri = `${window.location.origin}/api/posts/${id}`;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', uri);
 
@@ -194,8 +195,8 @@ var postsApp = (function() {
       let data = JSON.parse(xhr.response);
       var date = data.post.timeframe.slice(0, 7);
       
-      console.log(date); 
-      console.log(data);//show the JSON of the selected post
+      // console.log(date); 
+      // console.log(data);//show the JSON of the selected post
 
       var form = `
         <div class="card">
@@ -207,6 +208,7 @@ var postsApp = (function() {
           </div>
           <div class="card-body">
             <form id="editPost" class="card-body">
+              <input type="hidden" id="slug" name="slug" value="${data.post.slug}">
               <div id="formMsg" class="alert alert-danger text-center">Your form has errors</div>
               <div class="row">
                 <div class="form-group col-md-6">
@@ -214,7 +216,7 @@ var postsApp = (function() {
                   <input type="text" id="title" name="title" class="form-control" value="${data.post.title}" required>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="timeframe">Wild guess when this happened (otherwise, just pick at random)</label>
+                  <label for="timeframe">Wild guess when this happened (or pick at random)</label>
                   <input type="month" id="timeframe" name="timeframe" class="form-control" value="${date}" required>
                 </div>
               </div>
@@ -247,7 +249,7 @@ var postsApp = (function() {
                 <input type="text" id="image" name="image" class="form-control" value="${data.post.image}" >
               </div>
               <div>
-                <input type="hidden" id="slug" name="slug" class="form-control" value="${data.post.slug}" required>
+                <input type="hidden" id="_id" name="_id" class="form-control" value="${data.post._id}" required>
               </div>
               <div>
                 <input type="hidden" id="created" name="created" class="form-control" value="${data.post.createdAt}" required>
@@ -388,17 +390,22 @@ var postsApp = (function() {
 
         case '#view':
           //console.log('VIEW');
-          viewPost(hashArray[1]);
+          // console.log('hash')
+          // console.log(hash);
+          // viewPost(hashArray[1]);
+          viewPost(hashArray.slice(1).join('-'));
           break;
 
         case '#edit':
           //console.log('EDIT');
-          editPost(hashArray[1]);
+          // editPost(hashArray[1]);
+          editPost(hashArray.slice(1).join('-'));
           break;
 
         case '#delete':
           //console.log('DELETE');
-          deleteView(hashArray[1]);
+          // deleteView(hashArray[1]);
+          deleteView(hashArray.slice(1).join('-'));
           break;
 
         default:

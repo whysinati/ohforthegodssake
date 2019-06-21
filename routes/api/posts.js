@@ -15,6 +15,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/:slug', function(req,res){
   var slug= req.params.slug;
+  // console.log('api');
+  // console.log(slug);
+  // console.log(req.url);
   Posts.findOne({'slug':slug}, function(err, post){
 // router.get('/:id', function(req,res){
 
@@ -122,7 +125,7 @@ router.delete('/:slug', function(req,res){
 
   var slug = req.params.slug;
 
-  Posts.remove({'slug':slug}, function(err,removed){
+  Posts.deleteOne({'slug':slug}, function(err,removed){
 
     if(err){
       return res.json({success: false, error: err});

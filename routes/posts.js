@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     {
       return handleError(err);
     }
-      return res.render('posts/index', { title: 'Posts / Blog' , posts:posts});
+      return res.render('posts/index', { title: 'Stories' , posts:posts});
   });
 });
 //router.get('/:slug', function(req, res, next) {
@@ -27,8 +27,9 @@ router.get('/view/:slug', function(req, res, next) {
       return handleError(err);
     }
     else{
-      console.log(req.params.slug);
-      return res.render('posts/view', { title: 'My Selected Post' , post:posts});
+      // console.log('from_app');
+      // console.log(req.params.slug);
+      return res.render('posts/view', { title: 'Selected Story' , post:posts});
     }
   });
 });

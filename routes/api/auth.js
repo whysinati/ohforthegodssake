@@ -55,7 +55,7 @@ router.post('/login', function(req, res, next) {
       }
 
       //we will use a console.log() to test the session data
-      console.log(req.session); //shows cookie & passport object in terminal window
+      // console.log(req.session); //shows cookie & passport object in terminal window
 
       return res.json({success:true, user: user });
     });
