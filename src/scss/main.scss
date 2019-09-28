@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Ranga');
-@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Satisfy');
+// @import url('https://fonts.googleapis.com/css?family=Ranga');
+// @import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Satisfy');
+@import url('https://fonts.googleapis.com/css?family=Exo+2|Open+Sans');
 
 body {
   padding: 20px;
-  font: 14px "Acme", Helvetica, Arial, sans-serif;
+  font: 14px 'Exo 2', Helvetica, Arial, sans-serif;
 }
 
 *, h1{
   // font-family: 'Satisfy', cursive;
   // font-family: 'Ranga', cursive;
-  font-family: 'Acme', sans-serif;
+  font-family: 'Exo 2', sans-serif;
 }
 
 p {

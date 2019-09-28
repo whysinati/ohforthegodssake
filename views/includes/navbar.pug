@@ -2,7 +2,9 @@
 //nav.navbar.navbar-default
 //nav.navbar.navbar-expand-lg.navbar-light.bg-dark
 //nav.navbar.navbar-expand-sm
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+nav.navbar.navbar-expand-lg.navbar-dark(
+  style={'background-color': '#EBA487', 'color':'#FFDDDD'}
+  )
   .container
     a.navbar-brand(href='#')
       // Use Font Awesome for a generic logo
@@ -24,7 +26,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           a.nav-link(href='/')
             | Home
         li.nav-item
-          a.nav-link(href='/posts') Stories
+          a.nav-link(href='/posts') Gram-Tales
         if showLogin
           li.nav-item
             a.nav-link(href='/auth#register') Register
@@ -32,7 +34,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
             a.nav-link(href='/auth#login') Login
         else
           li.nav-item
-            a.nav-link(href='/posts/byUser/:user_id') My Posts
+            a.nav-link(href='/posts/app/' + _id) My Posts
           li.nav-item
             a.nav-link(href='/posts/app') Post Admin
           li.nav-item

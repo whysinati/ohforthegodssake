@@ -1,3 +1,5 @@
+// import { session } from "../../config.dev"; //causing a sytax error:unexpected token
+
 var postsApp = (function() {
 
   function viewPosts() {
@@ -17,7 +19,11 @@ var postsApp = (function() {
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
       let posts = data.posts;
-      // console.log(posts);
+      console.log(data);
+      // console.log(session); // causes reference error: session not defined
+      // console.log(res.locals.session);
+      // console.log(req.params.user_id);
+      // console.log(req.session.passport.user); //(posts);
       let table = '';
       let rows = '';
       //console.log(data); //this shows a success/array of the posts in the db
@@ -25,6 +31,7 @@ var postsApp = (function() {
       //Loop each post record into it's own HTML table row, each post should
       //have a link to post view
       for (let i = 0; i < posts.length; i++) {
+        if (posts[i]['user_id']=='5cf177898a08f059cce02bf6'){
         rows = rows + `<tr>
           <td>
             <a href="#view-${posts[i]['slug']}">${posts[i]['title']}</a>
@@ -32,9 +39,10 @@ var postsApp = (function() {
           <td>${posts[i]['body']}</td>
           <td>${posts[i]['quote']}</td>
           <td>${posts[i]['image']}</td>
+          <td>${posts[i]['user_id']}</td>
 
         </tr>`;
-      }
+      };}
 
       //Create a posts panel, add a table to the panel, inject the rows into the
       //table
@@ -53,6 +61,7 @@ var postsApp = (function() {
                 <td>Story</td>
                 <td>Quote</td>
                 <td>Image</td>
+                <td>Author</td>
 
               </tr>
             </thead>
@@ -64,7 +73,7 @@ var postsApp = (function() {
       //Append the HTML to the #app
       app.innerHTML = table;
     }
-  }
+  } 
 
   function createPost() {
     var app = document.getElementById('app');

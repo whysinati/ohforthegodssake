@@ -30,7 +30,7 @@ router.get('/:slug', function(req,res){
   });
 });
 
-//does this show just the user's own posts?
+//does this show just the user's own posts? or an admin clicks on a user to see their posts?
 router.get('/byUser/:user_id', function(req,res){
   var userID = req.params.user_id;
   Posts.find({'user_id':userID}, null, {sort: '-timeframe'}, function(err, posts){

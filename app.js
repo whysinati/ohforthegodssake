@@ -1,8 +1,8 @@
 var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var express = require('express'); //Z import the express framework into my app 
+var path = require('path'); //Z for working with and handling paths
+var cookieParser = require('cookie-parser'); //ZExpress middleware that helps handle cookies -- the request object will have a cookies object which can be accessed in the app
+var logger = require('morgan'); //Z Express middleware for logging requests and responses--use during dev to see what requests are being made, but can remove w/o consequences
 var Recaptcha = require('express-recaptcha').RecaptchaV3;
 //import Recaptcha from 'express-recaptcha'
 var recaptcha = new Recaptcha('SITE_KEY', 'SECRET_KEY');
@@ -13,7 +13,7 @@ var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Users = require('./models/users');
-
+//Z 'dummy' pages to show how routing works and/or to separate some of the routing into other files for easier management
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
@@ -31,17 +31,18 @@ if(process.env.NODE_ENV==='production'){
 }
 //Connect to MongoDB
 mongoose.connect(config.mongodb, { useNewUrlParser: true });
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-app.use(logger('dev'));
-app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-app.use(express.urlencoded({ extended: true })); // for reCAPTCHA
-app.use(cookieParser());
+// view engine setup //Z path.join() method normalizes all the arguments into a path string
+app.set('views', path.join(__dirname, 'views')); //Z __dirname with path.join() sets the apps view folder to .../gram/views (however doesn't check if path exists! -- mainly used to transform path strings)
+//Z line above: tells Express to use the /views folder in the app (gram) directory
+app.set('view engine', 'pug'); //Z tells Express to use the Pug templating engine (it simplifies the HTML files and --really handy-- conditionals. files will be saved as .pug instead of .html)
+//Z app.use() tells the app to use the parameters it's given, such as a path or a path and a function
+app.use(logger('dev')); //Z logs requests to the console, such as method, status code and response time
+app.use(express.json()); //Z why not use bodyParser.json()? is this providing the ability to parse JSON?
+// app.use(express.urlencoded({ extended: false })); //Z allows the app to read data from URL GET requests; by default {extended: true}, but querystring module will be needed
+app.use(express.urlencoded({ extended: true })); // changed for reCAPTCHA
+app.use(cookieParser()); //Z adds a cookie object to all the requests you get
 app.use(dateFormat);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); //Z tells the app to use the /public directory where images, stylesheets and scripts are stored
 
 app.use(require('express-session')({
   //Define the session store
@@ -79,14 +80,17 @@ passport.deserializeUser(function(user, done){
 });
 
 app.use(function(req,res,next){
+  console.log('LOCALSXXXXX'); // + res.locals);
   res.locals.session = req.session;
   //these six lines are from 1903
   res.locals.showLogin = true;
+  // console.log('res.locals BEFORE ' + res.locals.showlogin); //undefined
   if(req.session.passport){
     if(req.session.passport.user){
       res.locals.showLogin = false;
     }
   }
+  // console.log('res.locals AFTER ' + res.locals.showlogin); //undefined
   next();
 });
 
@@ -96,7 +100,7 @@ app.use(function(req,res,next){
   //return next();
 
   //Allow any endpoint that is an exact match. The server does not
-  //have access to the hash so /auth and /auth#xxx would bot be considered 
+  //have access to the hash so /auth and /auth#xxx would both be considered 
   //exact matches.
   var whitelist = [
     '/',
@@ -138,7 +142,9 @@ app.use(function(req,res,next){
   //redirect the user to the login screen.
   return res.redirect('/auth#login');
 });
-
+//Z these are the routing methods 
+//Z (first parameter is the path and the second is the function to execute)
+//Z (for example, the app goes to /routes/auth.js (?) to find/execute the authRouter function)
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/users/', usersRouter); //remove this feature?
