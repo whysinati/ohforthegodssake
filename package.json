@@ -14,7 +14,7 @@
     "express-recaptcha": "^5.0.0",
     "express-session": "^1.16.1",
     "http-errors": "~1.6.2",
-    "mongoose": "^5.5.11",
+    "mongoose": "^5.7.5",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.0",
     "multer": "^1.4.2",
