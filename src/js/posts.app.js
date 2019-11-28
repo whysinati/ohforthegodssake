@@ -19,7 +19,7 @@ var postsApp = (function() {
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
       let posts = data.posts;
-      console.log(data);
+      // console.log(data);
       // console.log(session); // causes reference error: session not defined
       // console.log(res.locals.session);
       // console.log(req.params.user_id);
@@ -29,7 +29,7 @@ var postsApp = (function() {
       //console.log(data); //this shows a success/array of the posts in the db
 
       //Loop each post record into it's own HTML table row, each post should
-      //have a link to post view
+      //have a link to post view 
       for (let i = 0; i < posts.length; i++) {
         if (posts[i]['user_id']=='5cf177898a08f059cce02bf6'){
         rows = rows + `<tr>
@@ -86,7 +86,7 @@ var postsApp = (function() {
           </div>
         </div>
         <div class="card-body">
-          <form id="createPost" class="card-body">
+          <form id="createPost" class="card-body" enctype="multipart/form-data">
             <div id="formMsg" class="alert alert-danger text-center">Your form has errors</div>
             <div class="row">
               <div class="form-group col-md-6">
@@ -102,7 +102,7 @@ var postsApp = (function() {
               <div class="form-group col-md">
                 <label for="body">Story</label>
                 <textarea id="body" name="body" class="form-control" rows="6" ></textarea>
-              </div>
+              </div> 
             </div>
             <div class="row">
               <div class="form-group col-md-6">
@@ -123,7 +123,9 @@ var postsApp = (function() {
               </div>
               <div class="form-group col-md-6">
                 <label for="image">Attach Image</label>
-                <input type="text" id="image" name="image" class="form-control" >
+                <input type="text" id="image" name="image" class="form control" >
+                <!-- <input type="file" id="image" name="image" class="form control" > -->
+                <!-- <input type="file" id="image" name="image" enctype="multipart/form-data" > -->
               </div>
             </div>
             <div class="text-right">

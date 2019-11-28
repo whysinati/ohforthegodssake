@@ -1,5 +1,6 @@
 var createError = require('http-errors');
-var express = require('express'); //Z import the express framework into my app 
+var express = require('express'); //Z import the express framework into my app
+// var bodyParser = require('body-parser'); //nodeimageupload 
 var path = require('path'); //Z for working with and handling paths
 var cookieParser = require('cookie-parser'); //ZExpress middleware that helps handle cookies -- the request object will have a cookies object which can be accessed in the app
 var logger = require('morgan'); //Z Express middleware for logging requests and responses--use during dev to see what requests are being made, but can remove w/o consequences
@@ -21,6 +22,7 @@ var postsRouter = require('./routes/posts');
 var apiUsersRouter = require('./routes/api/users');
 var apiAuthRouter = require('./routes/api/auth');
 var apiPostsRouter = require('./routes/api/posts');
+// var imgRouter = require('./routes/posts/upload'); //nodeimageupload (modified) needs upload.js file
 var app = express();
 
 if(process.env.NODE_ENV==='production'){
@@ -37,6 +39,8 @@ app.set('views', path.join(__dirname, 'views')); //Z __dirname with path.join() 
 app.set('view engine', 'pug'); //Z tells Express to use the Pug templating engine (it simplifies the HTML files and --really handy-- conditionals. files will be saved as .pug instead of .html)
 //Z app.use() tells the app to use the parameters it's given, such as a path or a path and a function
 app.use(logger('dev')); //Z logs requests to the console, such as method, status code and response time
+// app.use(bodyParser.json()); //nodeimageupload
+// app.use(bodyParser.urlencoded({extended: true})); //nodimageupload
 app.use(express.json()); //Z why not use bodyParser.json()? is this providing the ability to parse JSON?
 // app.use(express.urlencoded({ extended: false })); //Z allows the app to read data from URL GET requests; by default {extended: true}, but querystring module will be needed
 app.use(express.urlencoded({ extended: true })); // changed for reCAPTCHA
@@ -152,6 +156,7 @@ app.use('/posts/', postsRouter);
 app.use('/api/users', apiUsersRouter);
 app.use('/api/auth', apiAuthRouter);
 app.use('/api/posts', apiPostsRouter);
+// app.use('/upload', imgRouter); //nodeimageupload (modified) needs upload.js file
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
