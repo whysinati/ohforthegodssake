@@ -86,7 +86,8 @@ var postsApp = (function() {
           </div>
         </div>
         <div class="card-body">
-          <form id="createPost" class="card-body" enctype="multipart/form-data">
+          <!-- <form id="createPost" class="card-body" enctype="multipart/form-data"> -->
+          <form id="createPost1" class="card-body" method="post" action="/api/posts" enctype="multipart/form-data">
             <div id="formMsg" class="alert alert-danger text-center">Your form has errors</div>
             <div class="row">
               <div class="form-group col-md-6">
@@ -123,7 +124,7 @@ var postsApp = (function() {
               </div>
               <div class="form-group col-md-6">
                 <label for="image">Attach Image</label>
-                <input type="text" id="image" name="image" class="form control" >
+                <input type="file" id="image" name="image" class="form control" >
                 <!-- <input type="file" id="image" name="image" class="form control" > -->
                 <!-- <input type="file" id="image" name="image" enctype="multipart/form-data" > -->
               </div>
@@ -138,7 +139,7 @@ var postsApp = (function() {
 
 
     app.innerHTML = form;
-    //console.log("something");
+    //console.log("something"); 
   }
 
   function viewPost(id){

@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const path = require('path');
+const upload = require('../../uploadMiddleware');
+const Resize = require('../../Resize');
 var Posts = require('../../models/posts');
+// const multer = require('multer'); // nodeimageupload
 
 router.get('/', function(req, res, next) {
     Posts.find({}, null, {sort: '-timeframe'}, function(err, posts){
@@ -41,13 +45,22 @@ router.get('/byUser/:user_id', function(req,res){
     });
 });
 
-router.post('/', function(req, res) {
+router.post('/', upload.single('image'), async function(req, res) {
+  // var filename = '';
+  if (req.file) {
+    // console.log(req.file, req.file.buffer.length);
+    const imagePath = 'public/images/uploads';
+    const fileUpload = new Resize(imagePath);
+    filename = await fileUpload.save(req.file.buffer);
+    console.log(filename);
+  }
+  // console.log("hey");
   Posts.create(new Posts({
     title: req.body.title,
     caption: req.body.caption,
     quote: req.body.quote,
     body: req.body.body,
-    image: req.body.image,
+    // image: filename,
     description: req.body.description,
     keywords: req.body.keywords,
     timeframe: req.body.timeframe,
@@ -58,8 +71,8 @@ router.post('/', function(req, res) {
       return res.json({success: false, post: req.body, error: err});
     }
 
-    return res.json({success: true, post: post});
-    
+    // return res.json({success: true, post: post});
+    return res.redirect('../posts/')
   });
 });
 

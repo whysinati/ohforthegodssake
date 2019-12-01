@@ -13,7 +13,10 @@ var Posts = new Schema({
     required: [true, 'A slug is required'],
     unique: true
   },
-  image: String,
+  image: {
+    data: Buffer, 
+    contentType: String
+  },
   description: String,
   keywords: String,
   body: String,
